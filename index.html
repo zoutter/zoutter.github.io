@@ -6,7 +6,33 @@
 </head>
 <body>
 	<h1>Select a Major</h1>
-	<input type="button" id="CITbutton" value="CIT Majors"/> &nbsp; <input type="button" id="businessButton" value="Business Majors"/>
+	<input type="button" id="CITbutton" value="CIT Majors" onClick="getData('CIT')"/> &nbsp; <input type="button" id="businessButton" value="Business Majors" onClick="getData('business')"/>
 	<h2>We filter our dataset by major</h2>
+	<div id="report"></div>
 </body>
+<!-- Handlebars template -->
+<script type="text/x-handlebars-template" id="tableTemplate">
+	<table>
+		<tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
+			{{#each rows}}
+				<tr>
+                     			<td>{{name}}</td><td>{{major}}</td><td>{{midterm}}</td><td>{{final}}</td>
+                		</tr>
+             		{{/each}}
+	</table>
+</script>
+<!-- application ajax code -->
+<script>
+  function getData(selected_major) {     
+      var request = new XMLHttpRequest();
+      request.open('GET', 'cit5students.json');     
+ 
+      request.onload = function() {                    
+         var data = JSON.parse(request.responseText);    // convert json to javascript array of objects
+        }
+	  
+     }     
+     request.send(null);
+  }
+</script>
 </html>
